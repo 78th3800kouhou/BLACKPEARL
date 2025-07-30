@@ -589,17 +589,6 @@ body {
   opacity: 1;
 }
 
-.menu-left,
-.menu-right {
-  transform: none !important;
-  background: red; /* 一時的に目立つ色に */
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: 9999;
-}
-
-
 /* メニューリスト */
 .menu-left ul,
 .menu-right ul {
