@@ -349,7 +349,7 @@ body {
     position: absolute;
     z-index: 1;
     animation-delay: 3.7s;
-    z-index: 2;
+    z-index: 1200;
     }
 
     .cover-animation::before {
@@ -402,70 +402,12 @@ body {
             width:100%;
             height:auto;
         }
-
-        /* #region ナビゲーションバー */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10vh;
-            background: #000;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 1em;
-            z-index: 1;
-        }
-        
-        /* ハンバーガー */
-        .hamburger {
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        
-        /* サイドメニュー */
-        .side-menu {
-            position: fixed;
-            top: 10vh; /* ナビバーの下 */
-            left: -200px;
-            width: 200px;
-            height: 100%;
-            background: #000;
-            transition: left 0.3s ease;
-            padding-top: 1em;
-            z-index: 999;
-        }
-        
-        .side-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .side-menu li {
-            margin: 1em;
-        }
-        
-        .side-menu a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        /* メニューが開いた時 */
-        .side-menu.open {
-            left: 0;
-        }
         
         /* 本文パディング調整 */
         main {
             padding-top: 10vh;
             height: 100%;
         }
-        /*#endregion*/
 
            .split-screen {
             height: 100%;
@@ -507,6 +449,16 @@ body {
             position: relative;
             width: 80%;
             margin: 0 auto;
+          }
+
+          #attention{
+            font-size: 15px;
+            color: white;
+            border-bottom: none;
+            display: block;
+            text-align: center; /* 中央揃えしたい場合 */
+            margin-top: 10px;
+            font-family: "Kaisei Opti", serif;
           }
 
           .video-container {
@@ -572,7 +524,134 @@ body {
           .insta-button:hover {
             color: #999;
           }
+
+/* #region メニュー用のアニメーション*/
+          /* 全体のオーバーレイ（最初は非表示） */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* 共通設定（左右） */
+.menu-left,
+.menu-right {
+  width: 50vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  opacity: 0;
+  z-index: 1000;  /* カバーの階層 */
+}
+
+/* 初期位置 */
+.menu-left {
+  width: 80vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.menu-right {
+  width: 20vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  opacity: 0;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateY(-100%);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+  transition-delay: 0.3s, 0.3s; 
+}
+
+/* 表示時 */
+.menu-overlay.open .menu-left {
+  transform: translateX(0);
+}
+.menu-overlay.open .menu-right {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-left,
+.menu-right {
+  transform: none !important;
+  background: red; /* 一時的に目立つ色に */
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 9999;
+}
+
+
+/* メニューリスト */
+.menu-left ul,
+.menu-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-left li,
+.menu-right li {
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+/* ハンバーガー */
+/* ハンバーガー全体 */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+/* 各バー（線） */
+.hamburger span {
+  display: block;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.4s ease;
+}
+
+/* open状態 */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+
           
+/* #endregion */
     }
 
 /*またもやスマホ用*/
@@ -674,6 +753,16 @@ body {
           border-bottom: 1px solid #FFF;
           }
 
+        #attention{
+          font-size: 15px;
+          font-family: "Kaisei Opti", serif;
+          color: white;
+          border-bottom: none;
+          display: block;
+          text-align: center; /* 中央揃えしたい場合 */
+          margin-top: 10px;
+        }
+
           #logo{
             display: block;
             position: relative;
@@ -681,11 +770,55 @@ body {
             margin: 0 auto;
           }
 
+          .video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+          }
           
+          .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+          }
+          
+          .video-thumbnail img {
+            width: 70%;
+            height: auto;
+            display: block;
+            border-radius: 50%;
+            margin: 15%;
+          }
+          
+          .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: white;
+            background: rgba(186, 49, 33, 0.6);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transform-origin: center center;
+          }
+          
+
+          .play-button:hover {
+            width: 90px;
+            height: 90px;
+            font-size: 45px;
+          }
 
           .share{
             display:block;
           }
+
 
           .insta-button {
             display: inline-block;
@@ -702,3 +835,5 @@ body {
             color: #999;
           }
     }
+
+    
