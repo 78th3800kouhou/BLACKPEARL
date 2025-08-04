@@ -11,7 +11,7 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 .anton-regular {
@@ -20,6 +20,13 @@ body {
   font-style: normal;
 }
 
+*{
+  overflow-x: hidden;
+}
+
+#red{
+  color:#C73422
+}
 
 /*開いた直後の目のアニメーション*/
     @media screen and (min-width: 480px) { /*ウィンドウ幅が480px以上の場合に適用*/
@@ -31,42 +38,42 @@ body {
         height: auto;
         }
     
-        .delay-1 {
+        #start-images .delay-1 {
             width : 53%;
             bottom : 10%;
             right : 5%;
           }
-        .delay-2 {
+        #start-images .delay-2 {
             width : 35%;
             bottom : 10%;
             left : 5%;
           }
-        .delay-3{
+          #start-images .delay-3{
             width : 35%;
             bottom : 29%;
             left : 5%;
         }
-        .delay-4{
+        #start-images .delay-4{
             width : 53%;
             top : 10%;
             left : 5%;           
         }
-        .delay-5{
+        #start-images .delay-5{
             width : 35%;
             bottom : 36%;
             right : 5%;
         }
-        .delay-6{
+        #start-images .delay-6{
             width : 35%;
             bottom : 55%;
             right : 5%;  
         }
-        .delay-7{
+        #start-images .delay-7{
             width : 35%;
             top : 10%;
             right : 5%;
         }
-        .delay-8{
+        #start-images .delay-8{
             width : 35%;
             bottom : 47%;
             left : 5%;
@@ -98,28 +105,28 @@ body {
         }
         }
         
-        .delay-1::before {
+        #start-images  .delay-1::before {
             animation-delay: 2.5s;
           }
-        .delay-2::before {
+        #start-images .delay-2::before {
             animation-delay: 2.6s;
           }
-        .delay-3::before {
+        #start-images .delay-3::before {
             animation-delay: 2.7s;
           }
-        .delay-4::before {
+        #start-images .delay-4::before {
             animation-delay: 2.5s;
           }
-        .delay-5::before {
+        #start-images .delay-5::before {
             animation-delay: 2.8s;
           }
-        .delay-6::before {
+        #start-images .delay-6::before {
             animation-delay: 2.7s;
           }
-        .delay-7::before {
+        #start-images .delay-7::before {
             animation-delay: 2.6s;
           }
-        .delay-8::before {
+        #start-images .delay-8::before {
             animation-delay: 2.8s;
           }
           
@@ -166,11 +173,49 @@ body {
         animation: dummy-end-check 2s ease 2s forwards;
         z-index:-1;
     }
+   
     @keyframes dummy-end-check {
         from { opacity: 1; }
         to { opacity: 1; } /* 何も変わらないけど、イベント検知用 */
       }
     
+    /*2回目以降*/
+    .quick-animation{
+      position : absolute;
+      width : 40%;
+      height : auto;
+      top : 25%;
+      left : 30%;
+      overflow: hidden;
+      animation: dummy-end-check 2s ease 1s forwards;
+      z-index:-1;
+    }
+
+    #Qlogo-back{
+      position : absolute;
+      width : 100%;
+      height : auto;
+      z-index : -100;
+      }
+
+      .Qcls-1{
+          mask:url(#Qmask-ani);    
+      }
+
+      .Qcls-2{
+          stroke-dasharray:2300px;
+          animation:h-written 3s forwards;
+      }
+
+      @keyframes Qh-written{
+          0% {
+              stroke-dashoffset:2300px;
+          }
+          100% {
+              stroke-dashoffset:0px;
+          }
+      }
+      
     }
 
 /*ここから下スマホ用*/
@@ -337,9 +382,46 @@ body {
                   opacity: 0;
                 }
               }
+    
+              /*2回目以降*/
+    .quick-animation{
+      position : absolute;
+      width : 60%;
+      height : auto;
+      top : 35%;
+      left : 20%;
+      overflow: hidden;
+      animation: dummy-end-check 2s ease 1s forwards;
+      z-index:-1;
     }
 
-/* #region カバー用アニメーション*/
+    #Qlogo-back{
+      position : absolute;
+      width : 100%;
+      height : auto;
+      z-index : -100;
+      }
+
+      .Qcls-1{
+          mask:url(#Qmask-ani);    
+      }
+
+      .Qcls-2{
+          stroke-dasharray:2300px;
+          animation:h-written 3s forwards;
+      }
+
+      @keyframes Qh-written{
+          0% {
+              stroke-dashoffset:2300px;
+          }
+          100% {
+              stroke-dashoffset:0px;
+          }
+      }
+    }
+
+/* #region 共有・カバー用アニメーション*/
     .cover-animation::before,
     .cover-animation::after {
     animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -387,6 +469,31 @@ body {
         transform: translateX(100%);
     }
     }
+
+    .Qcover-animation::before,
+    .Qcover-animation::after {
+    animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    content: '';
+    background: #000;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    animation-delay: 2.4s;
+    z-index: 1200;
+    }
+
+    .Qcover-animation::before {
+    animation-name: img-wrap-before;
+    inset: 0 0 50%;
+    transform: translateX(100%);
+    }
+
+    .Qcover-animation::after {
+    animation-name: img-wrap-after;
+    inset: 50% 0 0;
+    transform: translateX(-100%);
+    }
+
 /*#endregion*/
 
 /*メインページ用記述*/
@@ -526,6 +633,17 @@ body {
           }
 
 /* #region メニュー用のアニメーション*/
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
           /* 全体のオーバーレイ（最初は非表示） */
 .menu-overlay {
   position: fixed;
@@ -539,22 +657,10 @@ body {
 }
 
 /* 共通設定（左右） */
-.menu-left,
-.menu-right {
-  width: 50vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0 ,1);
-  color: white;
-  padding: 50px 20px;
-  box-sizing: border-box;
-  pointer-events: auto;
-  opacity: 0;
-  z-index: 1000;  /* カバーの階層 */
-}
 
 /* 初期位置 */
 .menu-left {
-  width: 80vw;
+  width: 50vw;
   height: 100vh;
   background-color: rgba(0, 0, 0 ,1);
   color: white;
@@ -566,18 +672,16 @@ body {
   transition: transform 0.4s ease;
 }
 .menu-right {
-  width: 20vw;
+  width: 50vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0 ,1);
+  background-color: rgb(0, 0, 0);
   color: white;
   padding: 50px 20px;
   box-sizing: border-box;
   pointer-events: auto;
-  opacity: 0;
   z-index: 1000;  /* カバーの階層 */
   transform: translateY(-100%);
-  transition: transform 0.1s ease, opacity 0.1s ease;
-  transition-delay: 0.3s, 0.3s; 
+  transition: transform 0.35s ease 0.2s;
 }
 
 /* 表示時 */
@@ -586,8 +690,19 @@ body {
 }
 .menu-overlay.open .menu-right {
   transform: translateY(0);
-  opacity: 1;
 }
+
+/* 閉じるとき用のクラス */
+.menu-overlay.closing .menu-right {
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+.menu-overlay.closing .menu-left{
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
 
 /* メニューリスト */
 .menu-left ul,
@@ -598,8 +713,8 @@ body {
 }
 .menu-left li,
 .menu-right li {
-  margin: 20px 0;
-  font-size: 24px;
+  margin: 8vh 30px;
+  font-size: 32px;
 }
 
 /* ハンバーガー */
@@ -622,6 +737,7 @@ body {
 /* 各バー（線） */
 .hamburger span {
   display: block;
+  width: 100%;
   height: 2px;
   background-color: #fff;
   transition: all 0.4s ease;
@@ -633,11 +749,39 @@ body {
 }
 .hamburger.open span:nth-child(2) {
   opacity: 0;
+  transform: translateX(5px);
 }
 .hamburger.open span:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
 
+.menu-item {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.menu-item a {
+  color: white;              /* 文字色を白に固定 */
+  text-decoration: none;     /* 下線を消す（お好みで） */
+  font-family: "Anton", sans-serif;
+}
+
+.menu-overlay.open .menu-item {
+  animation: fadeInSlide 0.4s ease forwards;
+}
+
+.menu-overlay.open .delay-1 { animation-delay: 0.2s; }
+.menu-overlay.open .delay-2 { animation-delay: 0.3s; }
+.menu-overlay.open .delay-3 { animation-delay: 0.4s; }
+.menu-overlay.open .delay-4 { animation-delay: 0.5s; }
+.menu-overlay.open .delay-5 { animation-delay: 0.6s; }
+
+@keyframes fadeInSlide {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
           
 /* #endregion */
@@ -667,71 +811,7 @@ body {
             text-align: center;
           }
 
-    /* #region ナビゲーションバー */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10vh;
-            background: #000;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 1em;
-            z-index: 1;
-        }
-        
-        /* ハンバーガー */
-        .hamburger {
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        
-        /* サイドメニュー */
-        .side-menu {
-            position: fixed;
-            top: 10vh; /* ナビバーの下 */
-            left: -200px;
-            width: 200px;
-            height: 100%;
-            background: #000;
-            transition: left 0.3s ease;
-            padding-top: 1em;
-            z-index: 999;
-        }
-        
-        .side-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .side-menu li {
-            margin: 1em;
-        }
-        
-        .side-menu a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        /* メニューが開いた時 */
-        .side-menu.open {
-            left: 0;
-        }
-        
-        /* 本文パディング調整 */
-        main {
-            padding-top: 10vh;
-            height: 100%;
-            width: 100%;
-            position: relative;
-        }
-        /*#endregion*/
+    
         
         p{
           font-size: 24px;
@@ -823,6 +903,148 @@ body {
           .insta-button:hover {
             color: #999;
           }
+
+          /* 本文パディング調整 */
+        main {
+          padding-top: 10vh;
+          height: 100%;
+      }
+
+
+          /* #region メニュー用のアニメーション*/
+
+          .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 10vh;
+            background-color: black;
+            display: flex;
+            pointer-events: none;
+            z-index: 1000;
+          }
+          /* 全体のオーバーレイ（最初は非表示） */
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* 共通設定（左右） */
+
+/* 初期位置 */
+.menu-left {
+  width: 80vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.menu-right {
+  width: 20vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateY(-100%);
+  transition: transform 0.15s ease 0.4s;
+}
+
+/* 表示時 */
+.menu-overlay.open .menu-left {
+  transform: translateX(0);
+}
+.menu-overlay.open .menu-right {
+  transform: translateY(0);
+}
+
+/* 閉じるとき用のクラス */
+.menu-overlay.closing .menu-right {
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+.menu-overlay.closing .menu-left{
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+
+/* メニューリスト */
+.menu-left ul,
+.menu-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-left li,
+.menu-right li {
+  margin: 5vh 20px;
+  font-size: 30px;
+}
+
+.menu-item a {
+  color: white;              /* 文字色を白に固定 */
+  text-decoration: none;     /* 下線を消す（お好みで） */
+  font-family: "Anton", sans-serif;
+}
+
+/* ハンバーガー */
+/* ハンバーガー全体 */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+/* 各バー（線） */
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.4s ease;
+}
+
+/* open状態 */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+}
+
+
+          
+/* #endregion */
     }
 
     
