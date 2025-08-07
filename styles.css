@@ -1,0 +1,1283 @@
+html{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+}
+
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+*{
+  overflow-x: hidden;
+}
+
+#red{
+  color:#C73422
+}
+
+/*開いた直後の目のアニメーション*/
+    @media screen and (min-width: 480px) { /*ウィンドウ幅が480px以上の場合に適用*/
+          
+    .eyes-wrap {
+        position: absolute;  /* ← 必須！疑似要素をこの中に固定する */
+        overflow: hidden;
+        width: fit-content;  /* or 固定サイズ指定でもOK */
+        height: auto;
+        }
+    
+        #start-images .delay-1 {
+            width : 53%;
+            bottom : 10%;
+            right : 5%;
+          }
+        #start-images .delay-2 {
+            width : 35%;
+            bottom : 10%;
+            left : 5%;
+          }
+          #start-images .delay-3{
+            width : 35%;
+            bottom : 29%;
+            left : 5%;
+        }
+        #start-images .delay-4{
+            width : 53%;
+            top : 10%;
+            left : 5%;           
+        }
+        #start-images .delay-5{
+            width : 35%;
+            bottom : 36%;
+            right : 5%;
+        }
+        #start-images .delay-6{
+            width : 35%;
+            bottom : 55%;
+            right : 5%;  
+        }
+        #start-images .delay-7{
+            width : 35%;
+            top : 10%;
+            right : 5%;
+        }
+        #start-images .delay-8{
+            width : 35%;
+            bottom : 47%;
+            left : 5%;
+        }
+    
+    .eyes-wrap::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #000000;
+        z-index: 1;
+        pointer-events: none;
+        animation: eyes-wrap 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    
+    .eyes-wrap img {
+        width: 100%;
+        display: block;
+        position: relative;
+        z-index: 0;
+        }
+    
+    @keyframes eyes-wrap {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+        }
+        
+        #start-images  .delay-1::before {
+            animation-delay: 2.5s;
+          }
+        #start-images .delay-2::before {
+            animation-delay: 2.6s;
+          }
+        #start-images .delay-3::before {
+            animation-delay: 2.7s;
+          }
+        #start-images .delay-4::before {
+            animation-delay: 2.5s;
+          }
+        #start-images .delay-5::before {
+            animation-delay: 2.8s;
+          }
+        #start-images .delay-6::before {
+            animation-delay: 2.7s;
+          }
+        #start-images .delay-7::before {
+            animation-delay: 2.6s;
+          }
+        #start-images .delay-8::before {
+            animation-delay: 2.8s;
+          }
+          
+    .logo-animation{
+        position : absolute;
+        width : 20%;
+        height : auto;
+        top : 35%;
+        left : 40%;
+        overflow: hidden;
+    }
+
+    #logo-back{
+        position : absolute;
+        width : 100%;
+        height : auto;
+        z-index : -100;
+    }
+
+    .cls-1{
+        mask:url(#mask-ani);    
+    }
+
+    .cls-2{
+        stroke-dasharray:2300px;
+        animation:h-written 3s forwards;
+    }
+
+    @keyframes h-written{
+        0% {
+            stroke-dashoffset:2300px;
+        }
+        100% {
+            stroke-dashoffset:0px;
+        }
+    }
+
+    .start-animation{
+        width : 100%;
+        height : 57vw;
+        position : relative;
+        overflow: hidden;
+        position: relative;
+        animation: dummy-end-check 2s ease 2s forwards;
+        z-index:-1;
+    }
+   
+    @keyframes dummy-end-check {
+        from { opacity: 1; }
+        to { opacity: 1; } /* 何も変わらないけど、イベント検知用 */
+      }
+    
+    /*2回目以降*/
+    .quick-animation{
+      position : absolute;
+      width : 40vw;
+      height : auto;
+      top : 15vh;
+      left : 30vw;
+      overflow: hidden;
+      animation: dummy-end-check 2s ease 1s forwards;
+      z-index:-1;
+    }
+
+    #Qlogo-back{
+      position : absolute;
+      width : 100%;
+      height : auto;
+      z-index : -100;
+      }
+
+      .Qcls-1{
+          mask:url(#Qmask-ani);    
+      }
+
+      .Qcls-2{
+          stroke-dasharray:2300px;
+          animation:h-written 3s forwards;
+      }
+
+      @keyframes Qh-written{
+          0% {
+              stroke-dashoffset:2300px;
+          }
+          100% {
+              stroke-dashoffset:0px;
+          }
+      }
+      
+    }
+
+/*ここから下スマホ用*/
+
+    @media screen and (max-width: 479px) { /*ウィンドウ幅が最大479pxまでの場合に適用*/
+
+        .start-animation{
+            width : 100vw;
+            height : 100vh;
+            position : relative;
+            overflow: hidden;
+            animation: dummy-end-check 2s ease 2s forwards;
+        }
+        @keyframes dummy-end-check {
+            from { opacity: 1; }
+            to { opacity: 1; } /* 何も変わらないけど、イベント検知用 */
+          }      
+        
+        #start-images{
+            width: 100vh;
+            height: 100vh;
+        }
+        
+        .eyes-wrap{
+            width: 70%;
+            position: absolute;  /* ← 必須！疑似要素をこの中に固定する */
+            overflow: hidden;
+            height: auto;
+        }
+
+        .eyes-wrap img {
+            margin: 2% 0;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .delay-1 {
+            left:15%;
+            top:5%;
+            z-index: -2;
+          }
+        .delay-2 {
+            left:15%;
+            top:16%;
+            z-index: -2;
+          }
+        .delay-3{
+            left:15%;
+            top:27%;
+            z-index: -2;
+        }
+        .delay-4{    
+            left:15%;
+            top:38%; 
+            z-index: -2;  
+        }
+        .delay-5{
+            left:15%;
+            top:50%;
+            z-index: -2;
+        }
+        .delay-6{
+            left:15%;
+            top:62%;
+            z-index: -2;
+        }
+        .delay-7{
+            left:15%;
+            top:74%;
+            z-index: -2;
+        }
+        .delay-8{
+            left:15%;
+            top:86%;
+            z-index: -2;
+        }
+
+          .eyes-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #000000;
+            z-index: 1;
+            pointer-events: none;
+            animation: eyes-wrap 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+        
+        @keyframes eyes-wrap {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(100%);
+            }
+            }
+            
+            .delay-1::before {
+                animation-delay: 2.5s;
+              }
+            .delay-2::before {
+                animation-delay: 2.6s;
+              }
+            .delay-3::before {
+                animation-delay: 2.7s;
+              }
+            .delay-4::before {
+                animation-delay: 2.8s;
+              }
+            .delay-5::before {
+                animation-delay: 2.8s;
+              }
+            .delay-6::before {
+                animation-delay: 2.7s;
+              }
+            .delay-7::before {
+                animation-delay: 2.6s;
+              }
+            .delay-8::before {
+                animation-delay: 2.5s;
+              }
+              
+            .logo-animation{
+                position : absolute;
+                width : 60%;
+                height : auto;
+                top : 32%;
+                left : 20%;
+                overflow: hidden;
+            }
+        
+            #logo-back{
+                position : absolute;
+                width : 100%;
+                height : auto;
+                z-index : -1;
+            }
+        
+            .cls-1{
+                mask:url(#mask-ani);    
+            }
+        
+            .cls-2{
+                stroke-dasharray:2300px;
+                animation:h-written 3s forwards;
+            }
+        
+            @keyframes h-written{
+                0% {
+                    stroke-dashoffset:2300px;
+                }
+                100% {
+                    stroke-dashoffset:0px;
+                }
+            }
+
+            .logo-animation {
+                animation: hideMe 0.2s 2.5s forwards; /* 3秒後に即座に実行（0s） */
+              }
+              
+              @keyframes hideMe {
+                to {
+                  visibility: hidden;
+                  opacity: 0;
+                }
+              }
+    
+              /*2回目以降*/
+    .quick-animation{
+      position : absolute;
+      width : 60%;
+      height : auto;
+      top : 35%;
+      left : 20%;
+      overflow: hidden;
+      animation: dummy-end-check 2s ease 1s forwards;
+      z-index:-1;
+    }
+
+    #Qlogo-back{
+      position : absolute;
+      width : 100%;
+      height : auto;
+      z-index : -100;
+      }
+
+      .Qcls-1{
+          mask:url(#Qmask-ani);    
+      }
+
+      .Qcls-2{
+          stroke-dasharray:2300px;
+          animation:h-written 3s forwards;
+      }
+
+      @keyframes Qh-written{
+          0% {
+              stroke-dashoffset:2300px;
+          }
+          100% {
+              stroke-dashoffset:0px;
+          }
+      }
+    }
+
+/* #region 共有・カバー用アニメーション*/
+    .cover-animation::before,
+    .cover-animation::after {
+    animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    content: '';
+    background: #000;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    animation-delay: 3.7s;
+    z-index: 1200;
+    }
+
+    .cover-animation::before {
+    animation-name: img-wrap-before;
+    inset: 0 0 50%;
+    transform: translateX(100%);
+    }
+
+    .cover-animation::after {
+    animation-name: img-wrap-after;
+    inset: 50% 0 0;
+    transform: translateX(-100%);
+    }
+
+    @keyframes img-wrap-before {
+    40% {
+        transform: translateX(0%);
+    }
+    60% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+    }
+
+    @keyframes img-wrap-after {
+    40% {
+        transform: translateX(0%);
+    }
+    60% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+    }
+
+    .Qcover-animation::before,
+    .Qcover-animation::after {
+    animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    content: '';
+    background: #000;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    animation-delay: 2.4s;
+    z-index: 1200;
+    }
+
+    .Qcover-animation::before {
+    animation-name: img-wrap-before;
+    inset: 0 0 50%;
+    transform: translateX(100%);
+    }
+
+    .Qcover-animation::after {
+    animation-name: img-wrap-after;
+    inset: 50% 0 0;
+    transform: translateX(-100%);
+    }
+
+/*#endregion*/
+
+/*メインページ用記述*/
+
+    @media screen and (min-width: 480px){
+        .main-page{
+            width: 100%;
+            height:100%;
+            position: relative;
+        }
+
+        #poster{
+            width:100%;
+            height:auto;
+        }
+        
+        /* 本文パディング調整 */
+        main {
+            padding-top: 10vh;
+            height: 100%;
+        }
+
+           .split-screen {
+            height: 100%;
+            width: 100%;
+          }
+          
+          .left-panel,
+          .right-panel {
+            height: 90vh;
+            overflow-y: auto; /* ← スクロール有効 */
+            text-align: center;
+          }
+          
+          .left-panel {
+            width: 35%;
+            left: 0;
+            position: absolute;
+            background: #000;
+          }
+          
+          .right-panel {
+            width: 65%;
+            right: 0;
+            position: absolute;
+            background: #FFF;
+          }
+
+          p{
+            font-size: 24px;
+            display: inline-block;
+            color: white;
+            font-family: 'Anton', sans-serif;
+            padding: 5px 20px;
+            border-bottom: 1px solid #FFF;
+          }
+
+          #logo{
+            display: block;
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+          }
+
+          #attention{
+            font-size: 15px;
+            color: white;
+            border-bottom: none;
+            display: block;
+            text-align: center; /* 中央揃えしたい場合 */
+            margin-top: 10px;
+            font-family: "Kaisei Opti", serif;
+          }
+
+          .video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          
+          .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+          }
+          
+          .video-thumbnail img {
+            width: 70%;
+            height: auto;
+            display: block;
+            border-radius: 50%;
+            margin: 15%;
+          }
+          
+          .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: white;
+            background: rgba(186, 49, 33, 0.6);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transform-origin: center center;
+          }
+          
+
+          .play-button:hover {
+            width: 90px;
+            height: 90px;
+            font-size: 45px;
+          }
+
+          .share{
+            display:block;
+          }
+
+          .insta-button {
+            display: inline-block;
+            align-items: center;
+            margin: 15px auto 30px auto;
+            padding: 0px 10px 15px 10px;
+            color: white;
+            border: none;
+            font-size: 24px;
+            text-decoration: none;
+          }
+          
+          .insta-button:hover {
+            color: #999;
+          }
+
+/* #region メニュー用のアニメーション*/
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
+          /* 全体のオーバーレイ（最初は非表示） */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* 共通設定（左右） */
+
+/* 初期位置 */
+.menu-left {
+  width: 50vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.menu-right {
+  width: 50vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateY(-100%);
+  transition: transform 0.35s ease 0.2s;
+}
+
+/* 表示時 */
+.menu-overlay.open .menu-left {
+  transform: translateX(0);
+}
+.menu-overlay.open .menu-right {
+  transform: translateY(0);
+}
+
+/* 閉じるとき用のクラス */
+.menu-overlay.closing .menu-right {
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+.menu-overlay.closing .menu-left{
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+
+/* メニューリスト */
+.menu-left ul,
+.menu-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-left li,
+.menu-right li {
+  margin: 8vh 30px;
+  font-size: 32px;
+}
+
+/* ハンバーガー */
+/* ハンバーガー全体 */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+/* 各バー（線） */
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.4s ease;
+}
+
+/* open状態 */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(5px);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.menu-item {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.menu-item a {
+  color: white;              /* 文字色を白に固定 */
+  text-decoration: none;     /* 下線を消す（お好みで） */
+  font-family: "Anton", sans-serif;
+}
+
+.menu-overlay.open .menu-item {
+  animation: fadeInSlide 0.4s ease forwards;
+}
+
+.menu-overlay.open .delay-1 { animation-delay: 0.2s; }
+.menu-overlay.open .delay-2 { animation-delay: 0.3s; }
+.menu-overlay.open .delay-3 { animation-delay: 0.4s; }
+.menu-overlay.open .delay-4 { animation-delay: 0.5s; }
+.menu-overlay.open .delay-5 { animation-delay: 0.6s; }
+
+@keyframes fadeInSlide {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+          
+/* #endregion */
+    }
+
+/*またもやスマホ用*/
+
+    @media screen and (max-width: 479px){
+        
+        #poster{
+            width:100%;
+            height:auto;
+        }
+
+        .split-screen {
+            flex-direction: column; /* ← 縦並びに変更 */
+            width: 100%;
+            height: auto;           /* 高さを自動に */
+          }
+        
+          .left-panel,
+          .right-panel {
+            width: 100%;            /* 幅を全体に */
+            height: auto;           /* 高さも自動に */
+            max-height: none;       /* スクロール制限も解除 */
+            overflow-y: visible;    /* スクロール不要なら解除 */
+            text-align: center;
+          }
+
+    
+        
+        p{
+          font-size: 24px;
+          display: inline-block;
+          color: white;
+          font-family: 'Anton', sans-serif;
+          padding: 5px 20px;
+          border-bottom: 1px solid #FFF;
+          }
+
+        #attention{
+          font-size: 15px;
+          font-family: "Kaisei Opti", serif;
+          color: white;
+          border-bottom: none;
+          display: block;
+          text-align: center; /* 中央揃えしたい場合 */
+          margin-top: 10px;
+        }
+
+          #logo{
+            display: block;
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+          }
+
+          .video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          
+          .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+          }
+          
+          .video-thumbnail img {
+            width: 70%;
+            height: auto;
+            display: block;
+            border-radius: 50%;
+            margin: 15%;
+          }
+          
+          .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: white;
+            background: rgba(186, 49, 33, 0.6);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transform-origin: center center;
+          }
+          
+
+          .play-button:hover {
+            width: 90px;
+            height: 90px;
+            font-size: 45px;
+          }
+
+          .share{
+            display:block;
+          }
+
+
+          .insta-button {
+            display: inline-block;
+            align-items: center;
+            margin: 15px auto 30px auto;
+            padding: 10px 10px;
+            color: white;
+            border: none;
+            font-size: 24px;
+            text-decoration: none;
+          }
+          
+          .insta-button:hover {
+            color: #999;
+          }
+
+          /* 本文パディング調整 */
+        main {
+          padding-top: 10vh;
+          height: 100%;
+      }
+
+
+          /* #region メニュー用のアニメーション*/
+
+          .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 10vh;
+            background-color: black;
+            display: flex;
+            pointer-events: none;
+            z-index: 1000;
+          }
+          /* 全体のオーバーレイ（最初は非表示） */
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* 共通設定（左右） */
+
+/* 初期位置 */
+.menu-left {
+  width: 80vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.menu-right {
+  width: 20vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0 ,1);
+  color: white;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  z-index: 1000;  /* カバーの階層 */
+  transform: translateY(-100%);
+  transition: transform 0.15s ease 0.4s;
+}
+
+/* 表示時 */
+.menu-overlay.open .menu-left {
+  transform: translateX(0);
+}
+.menu-overlay.open .menu-right {
+  transform: translateY(0);
+}
+
+/* 閉じるとき用のクラス */
+.menu-overlay.closing .menu-right {
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+.menu-overlay.closing .menu-left{
+  opacity: 0;
+  transition: opacity 0.15s ease; 
+}
+
+
+/* メニューリスト */
+.menu-left ul,
+.menu-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-left li,
+.menu-right li {
+  margin: 5vh 20px;
+  font-size: 30px;
+}
+
+.menu-item a {
+  color: white;              /* 文字色を白に固定 */
+  text-decoration: none;     /* 下線を消す（お好みで） */
+  font-family: "Anton", sans-serif;
+}
+
+/* ハンバーガー */
+/* ハンバーガー全体 */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+/* 各バー（線） */
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.4s ease;
+}
+
+/* open状態 */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+}
+
+
+          
+/* #endregion */
+    }
+
+/*以上メインページ。以下キャストページ*/
+
+        .back-image{
+          position: absolute;
+          height: 100vh;
+          right: 0;
+          z-index: -1;
+          display: flex;
+          overflow: hidden;
+        }
+    
+        h1{
+        font-size: 5vw;
+        text-align: center;
+        display: inline-block;
+        color: black;
+        font-family: 'Anton', sans-serif;
+        padding: 5px 20px;
+        border-bottom: 1px solid black;
+        }
+
+        .Cast-button-container {
+          display: flex;
+          flex-wrap: wrap; /* ウィンドウが狭いと折り返す */
+          justify-content: center;
+          width: 80vw;
+          gap: 5%;
+          padding: 2% 0;
+        }
+
+        .cast-btn {
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+          margin-bottom: 5vw;
+          border: none;         /* 枠線を消す */
+          box-shadow: none;     /* 影を消す */
+          outline: none;        /* フォーカス時の枠線も消す */
+          background: none;     /* 背景も透明にしたい場合 */
+
+        }
+    
+        .cast-btn:hover {
+          transform: scale(1.05);
+        }
+
+        .Cast1 {
+          display: block;
+          width:30vw;
+          height: auto;
+        }
+
+        .Cast2 {
+          display: block;
+          width: 30vw;
+          height: auto;
+        }
+
+        .Cast3 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .Cast4 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .Cast5 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .Cast6 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .Cast7 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .Cast8 {
+          display: block;
+          width: 18.333vw;
+          height: auto;
+        }
+
+        .white-back{
+          width: 80vw;
+          height: 100vh;
+          background-color: white; 
+          margin: 0 20% 0 5%;
+          padding: 10% 0;
+        }
+
+        /* 画面全体を覆うカバー */
+        .Coverlay {
+          position: fixed;
+          top: 0;
+          left: -100%; /* 初期は画面外（左） */
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0,0,0,0.9);
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end; /* 下から出す */
+          transition: left 0.5s ease;
+          overflow: hidden;
+          z-index: 999;
+        }
+
+        .Coverlay.show {
+          left: 0; /* 画面左端から覆う */
+        }
+
+        .Coverlay-content {
+          width: 80%;
+          height: 100vh;
+          padding: 20px;
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+          position: relative;
+          max-width: 600px;
+          background-color: #fff;
+        }
+
+        .Coverlay.show .Coverlay-content {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        #close-btn {
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+        }
+
+        #cast-photo1{
+          width: auto;
+          height: 70%;
+          display: flex;
+          position: absolute;
+          right: 18%;
+          top: 33%;
+          z-index: 1001;
+        }
+
+        #cast-photo2{
+          width: auto;
+          height: 32%;
+          display: flex;
+          position: absolute;
+          right: 8%;
+          top: 33%;
+          z-index: 1000;
+        }
+
+        #cast-photo3{
+          width: auto;
+          height: 30%;
+          display: flex;
+          position: absolute;
+          right: 0%;
+          top: 50%;
+          z-index: 1000;
+        }
+
+        #cast-photo4{
+          width: 40%;
+          height: auto;
+          display: flex;
+          position: absolute;
+          top: 33%;
+          left: 0%;
+          z-index: 1000;
+        }
+
+        #cast-info{
+          display: flex;
+          color: #000;
+          position: absolute;
+          top: 55%;
+          left: 10%;
+          z-index: 1000;
+          font-family: "Kaisei Opti", serif;
+          font-size: 40px;
+          border-bottom: 1px solid black;
+        }
+
+        #cast-rubi{
+          font-size: 15px;
+          color: #000;
+          position: absolute;
+          top: 65%;
+          left: 10%;
+          z-index: 1000;
+          font-family: "Kaisei Opti", serif;
+        }
+
+        #close-btn{
+          font-size: 30px;
+          color: #000;
+          position: absolute;
+          top: 15%;
+          right: 5%;
+          z-index: 1000;
+          font-family: "Kaisei Opti", serif;
+        }
+
+        #back-word{
+          font-size: 156px;
+          color: #EEE;
+          position: absolute;
+          top: 10%;
+          left: 0%;
+          z-index: AAA;
+          font-family: "Kaisei Opti", serif;
+        }
+          
