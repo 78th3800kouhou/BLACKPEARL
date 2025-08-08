@@ -20,7 +20,7 @@
         <defs>
           <style>
             .Qcls-1 {
-              fill: #d45245;}<!--#d45245-->
+              fill: #d45245;}
           </style>
         </defs>
         <g>
@@ -166,7 +166,8 @@
         <div id="cast-info"></div>
         <div id="cast-rubi"></div>
         <div id="back-word"></div>
-
+        <div id="cast-ex"></div>
+        <div id="cast-Perf"></div>
       </div>
         </div>
     </div>
@@ -184,17 +185,20 @@
     const castRubi = document.getElementById('cast-rubi');
     const castBack = document.getElementById('back-word');
     const closeBtn = document.getElementById('close-btn');
+    const castEx = document.getElementById('cast-ex');
+    const castPerf = document.getElementById('cast-Perf');
+    
+// キャスト情報
 
-// キャスト情報（例）
 const castData = {
-1: { color: '#9D572D', photo1: 'Cast/nari.webp', photo2: 'Cast/nariF.webp', photo3: 'Cast/nariS.webp', photo4: 'Cast/nariG.webp', info: ' 滝沢真琴 ' , rubi: 'TAKIZAWA MAKOTO' , back: 'Ditective<br>TAKIZAWA<br>MAKOTO'},
-2: { color: '#278C99', photo1: 'Cast/aru.webp', photo2: 'Cast/aruF.webp', photo3: 'Cast/aruS.webp', photo4: 'Cast/aruG.webp', info: ' 三田村隼人 ', rubi: 'MITAMURA HAYATO' , back: 'Sidekick<br>MITAMURA<br>HAYATO'},
-3: { color: '#002C6F', photo1: 'Cast/ryo.webp', photo2: 'Cast/ryoF.webp', photo3: 'Cast/ryoS.webp', photo4: 'Cast/ryoG.webp', info: ' 小林やすお ', rubi: 'KOBAYASHI YASUO' , back: 'Vodka<br>KOBAYASHI<br>YASUO'},
-4: { color: '#7C3485', photo1: 'Cast/saeko.webp', photo2: 'Cast/saekoF.webp', photo3: 'Cast/saekoS.webp', photo4: 'Cast/saekoG.webp', info: ' ラム ', rubi: 'RUM' , back: 'Rum<br>RUM'},
-5: { color: '#49216F', photo1: 'Cast/takuto.webp', photo2: 'Cast/takutoF.webp', photo3: 'Cast/takutoS.webp', photo4: 'Cast/takutoG.webp', info: ' 養命酒 ', rubi: 'YOMEISHU' , back: 'Yomeishu<br>YOMEISHU'},
-6: { color: '#C4AD3D', photo1: 'Cast/yu.webp', photo2: 'Cast/yuF.webp', photo3: 'Cast/yuS.webp', photo4: 'Cast/yuG.webp', info: ' 小林ゆうか ', rubi: 'KOBAYASI YUKA' , back: 'Teenager<br>KOBAYASI<br>YUKA'},
-7: { color: '#385837', photo1: 'Cast/katsuki.webp', photo2: 'Cast/katsukiF.webp', photo3: 'Cast/katsukiS.webp', photo4: 'Cast/katsukiG.webp', info: ' 戸部勝久 ', rubi: 'TOBE KATUHISA' , back: 'Burglar<br>TOBE<br>KATSUHISA'},
-8: { color: '#842822', photo1: 'Cast/haruki.webp', photo2: 'Cast/harukiF.webp', photo3: 'Cast/harukiS.webp', photo4: 'Cast/harukiG.webp', info: ' 郷田剛 ', rubi: 'GOUDA TSUYOSHI' , back: 'Hitman<br>GOUDA<br>TSUYOSHI'},
+1: { color: '#9D572D', photo1: 'Cast/nari.webp', photo2: 'Cast/nariF.webp', photo3: 'Cast/nariS.webp', photo4: 'Cast/nariG.webp', info: ' 滝沢真琴 ' , rubi: 'TAKIZAWA MAKOTO' , back: 'Ditective<br>TAKIZAWA<br>MAKOTO' ,perf: 'ふくおかなり',ex: '頼りになる名(迷)探偵。<br>マフィアに責任を負わされて<br>ブラックパールを探すことに！？<br>悪いことには相当頭の切れるご様子。' },
+2: { color: '#278C99', photo1: 'Cast/aru.webp', photo2: 'Cast/aruF.webp', photo3: 'Cast/aruS.webp', photo4: 'Cast/aruG.webp', info: ' 三田村隼人 ', rubi: 'MITAMURA HAYATO' , back: 'Sidekick<br>MITAMURA<br>HAYATO',perf: 'たきある',ex: '滝沢の唯一の助手。<br>二足のわらじを履きこなす。<br>とってもおバカでマイペースだが<br>滝沢の役に立ちたいとは思っている'},
+3: { color: '#002C6F', photo1: 'Cast/ryo.webp', photo2: 'Cast/ryoF.webp', photo3: 'Cast/ryoS.webp', photo4: 'Cast/ryoG.webp', info: ' 小林やすお ', rubi: 'KOBAYASHI YASUO' , back: 'Vodka<br>KOBAYASHI<br>YASUO',perf: 'かやしまりょう',ex: 'マフィアの幹部であり、ゆうかの父。<br>不器用なところもあるが家族思い。<br>亡き妻の手術費用を稼ぐため<br>脱サラしてマフィアになった。'},
+4: { color: '#7C3485', photo1: 'Cast/saeko.webp', photo2: 'Cast/saekoF.webp', photo3: 'Cast/saekoS.webp', photo4: 'Cast/saekoG.webp', info: ' ラム ', rubi: 'RUM' , back: 'Rum<br>RUM',perf: 'あかまつさえこ',ex: 'ウォッカの部下のマフィア。<br>養命酒よりはまともだが<br>恋に盲目すぎる一面も。<br>彼氏にゴミをプレゼントされた。'},
+5: { color: '#49216F', photo1: 'Cast/takuto.webp', photo2: 'Cast/takutoF.webp', photo3: 'Cast/takutoS.webp', photo4: 'Cast/takutoG.webp', info: ' 養命酒 ', rubi: 'YOMEISHU' , back: 'Yomeishu<br>YOMEISHU',perf: 'おおしまたくと',ex: 'ウォッカの部下のマフィア。<br>ウォッカのために働いてきたが<br>滝沢に濡れ衣を着せられる。<br>おバカだがウォッカには大切にされている。'},
+6: { color: '#C4AD3D', photo1: 'Cast/yu.webp', photo2: 'Cast/yuF.webp', photo3: 'Cast/yuS.webp', photo4: 'Cast/yuG.webp', info: ' 小林ゆうか ', rubi: 'KOBAYASI YUKA' , back: 'Teenager<br>KOBAYASI<br>YUKA',perf: 'ふじのゆう',ex: '東大合格を目指す女子高生。<br>やすおを懲らしめるため<br>滝沢に自分の誘拐を提案する。<br>その後はやすおと仲良くやっている。'},
+7: { color: '#385837', photo1: 'Cast/katsuki.webp', photo2: 'Cast/katsukiF.webp', photo3: 'Cast/katsukiS.webp', photo4: 'Cast/katsukiG.webp', info: ' 戸部勝久 ', rubi: 'TOBE KATUHISA' , back: 'Burglar<br>TOBE<br>KATSUHISA',perf: 'おしべかつき',ex: 'Mr.雲隠れと呼ばれる窃盗団員。<br>数々の修羅場を潜り抜けてきたが<br>滝沢に先を越されてしまう。<br>FBIとは何の関係もない。'},
+8: { color: '#842822', photo1: 'Cast/haruki.webp', photo2: 'Cast/harukiF.webp', photo3: 'Cast/harukiS.webp', photo4: 'Cast/harukiG.webp', info: ' 郷田剛 ', rubi: 'GOUDA TSUYOSHI' , back: 'Hitman<br>GOUDA<br>TSUYOSHI',perf: 'なかがわはるき',ex: 'ダスティン・郷田・チャンドラーの経理担当。<br>鮮やかな手つきで電卓を打つ。<br>人生で銃を撃ったことは一度もないし<br>人を殺すなんてもってのほか。'},
 };
 
 buttons.forEach(btn => {
@@ -215,6 +219,9 @@ castPhoto4.src = data.photo4;
 castInfo.innerHTML = data.info;
 castRubi.innerHTML = data.rubi;
 castBack.innerHTML = data.back;
+castEx.innerHTML = data.ex;
+castPerf.innerHTML = data.perf;
+
 
 // オーバーレイ表示（左からスライド）
 Coverlay.classList.add('show');
