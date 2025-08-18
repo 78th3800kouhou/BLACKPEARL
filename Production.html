@@ -11,6 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap" rel="stylesheet">
+  <script src="comments.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB211TZ9WV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XB211TZ9WV');
+</script>
 </head>
 <body class="Qcover-animation">
   <div id="cover-wrap">
@@ -20,7 +30,7 @@
         <defs>
           <style>
             .Qcls-1 {
-              fill: #d45245;}<!--#d45245-->
+              fill: #d45245;}
           </style>
         </defs>
         <g>
@@ -65,11 +75,21 @@
         <path id ="Qmask-line" class="Qcls-2" d="M54.88,307.5l50.83-37.18.68-1.66c1.44.73,2.64,1.89,3.3,3.37,2.45,5.49.85,12.99.54,19.51l-24.82,59.02-17.68,35.87c-.18.36-.73.16-.62-.23l39.37-149.89,13.08,4.78,2.47,42.37v-54.81l14.81,2.96-1.47,34.48c-.04.71-.41,1.35-1,1.74l-11.6,7.93,15.1,2.23,36.43-18.35-45.58,28.31,1.49,24.64,39.25-32.42,3.44,6.57-13.14,52.34,14.26-59.01,15.05,37.01-10.85-23.57c-1.81-4.99,8.57-10.88,13.8-9.99l3.09,14.67c.05.24.38.27.47.04l6.2-14.84-.62.08c6.49,1.93,9.96,8.99,7.52,15.32l-10.36,28.37,14.93-71.12,9.72-.15-3.39,40.2,1.03-31.98,29.62-7.04-17.3,66.99c-.12.47.52.72.76.3l43.65-78.49,4.87,7.31-6.36,48.99c-.2,1.57,1.99,2.17,2.61.7l23.25-55.38,17.74,53.44-14.3-59.66,1.98-.13c4.76-1.36,5.52-1.75,4.96-6.67l2.69-5.82,14.73-13.14,6.93,10.46-17.15,24.55,14.94,30.39,48.18-15.89,8.99-43.61,14.29-.88-7.51,73.38-4.81-62.33,32.51-19.33-2.95,53.89,6.04,7.81,8.1-2.65,64.09-72.35"/>
         </mask>
       </svg>
+
+      <!-- ★ ランダムコメント表示用 -->
+      <p id="random-comment" style="text-align:center; margin-top: 10px; font-weight:bold;"></p>
+
     </div>
   </div>
   </div>
   <script>
+    const comments = window.BLACK_PEARL_COMMENTS || [];
     const quick = document.getElementById('quick-animation');
+
+    if (comments.length > 0) {
+      const randomComment = comments[Math.floor(Math.random() * comments.length)];
+      document.getElementById('random-comment').textContent = randomComment;
+    }
   
     quick.addEventListener('animationend', function (e) {
       if (e.animationName === 'dummy-end-check') {
@@ -138,8 +158,81 @@
     }
   });
     </script>
-    <main>
-      <p>Commig soon...</p>
+    <main class="production-main">
+      <!-- HTML -->
+      <div class="cards-container" id="staff-list"></div>
+
+      <!-- JavaScript -->
+      <script>
+      const staffMembers = [
+        { name: "A.Kotaro", role: "演出", comment: "あぁまぁ行く", img: "P-images/1.webp" },
+        { name: "A.Haruki", role: "音響/小道具", comment: "ガンバルクイナ", img: "P-images/2.webp" },
+        { name: "A.Saeko", role: "ラム役/宣伝/小道具", comment: "まさか自分がキャストになるなんて思ってなかったのでまだ不思議な感じですが引き受けてよかったです。モブ役ですけど最高の夏になりました🤩", img: "P-images/3.webp" },
+        { name: "A.Ryohei", role: "", comment: "", img: "P-images/4.webp" },
+        { name: "I.Marie", role: "外装チーフ", comment: "800の集大成！精一杯頑張ります。外装倒れませんように。", img: "P-images/5.webp" },
+        { name: "I.Mika", role: "演出チーフ", comment: "ないです。", img: "P-images/6.webp" },
+        { name: "I.Minato", role: "内展チ", comment: "みなさんこんにちは、展チの板倉です。<br>文量ぴったり1000文字のとっても長〜い文章となっております。覚悟を決めてからお読みください。お忙しい人は段落の最初の文字だけを読んでみてください。でも残念ながら特に文章になったりはしません。頑張って内容を想像してみてください。<br>さて、「BLACK PEARL」楽しんでいただけたでしょうか。ずっとワイワイ賑やかで、動物園と呼ばれるクラスにふさわしいとっても愉快な劇に仕上がったと思います。そんなクラスのリーダーをやってるんですから、僕はさしずめ飼育員みたいなもんなんです。でも１つ問題があって、この飼育員が動物みんな大好きなんですね。ゴミは持ち帰らないし、全然言うこと聞いてくれないですが、なんだかんだで皆ちゃんとやってくれます。今年の内装は去年までの比にならないほど複雑でしたが、8月はじめの校内見せに間にちゃんと合いました！感動です。ハンカチ1枚じゃ足りませんね。<br>実を言うと僕大して仕事してないんです。謙遜なんかじゃなく、ほんとに展チなんて名前だけで、口を出すだけ出してめんどくさい仕事は展チの権限で他人に押し付けてます。それでも展示ができたらみんなから褒めてもらえる、なんて美味しい仕事なんでしょう。<br>思い返せば、去年の文化祭が終わった9月から、副展チとの役職決めに始まり、劇選班での劇選(劇を選ぶこと)に広報班のデザイン考案、設計班の設計にさらには内外装班での木材マニュアルと制作マニュアルづくり、そして実際に制作と、ここまで長い道のりでした。それでもここまでやってこれたのは、長い道のりが一瞬に感じるほど楽しかったのは、全てクラスのみんなのおかげです。（そう、決してサボってたから仕事が少なかった訳ではない）こんな綺麗事は聞き飽きたとは思いますが、ほんとにそうなんです。クラスの全員で作った文化祭です。みんなへの感謝を語りだしたら止まりませんよ。ですが自分で1000文字と決めてしまったので、ここでは控えます。<br>だからゲストの皆様はどうかこの劇を思う存分楽しんで欲しいんです。そして私達を褒めちぎってください。こんな文章読んでる暇があったら感想フォームをもう1回送りましょう。動物園と呼ばれるだけあって単純な若者の集まりですから、賞賛コメント見るだけで大いに喜びます。あたたかいコメントおまちしております。<br>まだ国高祭は終わってません。打ち上げと文化祭の片付けをして、体育祭と後夜祭を終えてやっとすべてが終わります。そして受験です。僕は最後までこの愉快な素晴らしい仲間たちと駆け抜けるつもりです。お楽しみに！", img: "P-images/7.webp" },
+        { name: "I.Ayaka", role: "", comment: "", img: "P-images/8.webp" },
+        { name: "O.Takuto", role: "内装/養命酒役", comment: "まさか犯人が滝沢だったとは…😱😱", img: "P-images/9.webp" },
+        { name: "O.Katsuki", role: "", comment: "", img: "P-images/10.webp" },
+        { name: "K.Keita", role: "外展チ/演出", comment: "文化祭というのは、国高生の愛であります。そして私は国高生です。したがって文化祭とは私の愛なのです。", img: "P-images/11.webp" },
+        { name: "K.Shintaro", role: "", comment: "", img: "P-images/12.webp" },
+        { name: "K.Mahiro", role: "照明チーフ", comment: "光と笑顔を届けます", img: "P-images/13.webp" },
+        { name: "K.Ryo", role: "", comment: "", img: "P-images/14.webp" },
+        { name: "K.Tsubaki", role: "小道具チーフ/宣伝班", comment: "いろいろうまくいかないことが重なってどうなるか心配だったけど、結局はどうにかなるところに800魂を感じてうるうるしました。", img: "P-images/15.webp" },
+        { name: "K.Yuta", role: "広報", comment: "目指せ広報賞", img: "P-images/16.webp" },
+        { name: "K.Mikiya", role: "", comment: "", img: "P-images/17.webp" },
+        { name: "K.Shiori", role: "", comment: "", img: "P-images/18.webp" },
+        { name: "K.Hikaru", role: "外装木材/鳶職", comment: "早くて、安くて、安心な作業を目指します。", img: "P-images/19.webp" },
+        { name: "K.Ari", role: "", comment: "照明間違えないように全力を尽くします。", img: "P-images/20.webp" },
+        { name: "S.Yoshiaki", role: "", comment: "", img: "P-images/21.webp" },
+        { name: "S.Tappei", role: "", comment: "", img: "P-images/22.webp" },
+        { name: "S.Asaki", role: "", comment: "800のみんなで作り上げた劇を観て、たくさん笑ってください！", img: "P-images/23.webp" },
+        { name: "S.Haruyuki", role: "", comment: "", img: "P-images/24.webp" },
+        { name: "T.Aru", role: "内装班チーフ/音響チーフ/助手", comment: "ぽ", img: "P-images/25.webp" },
+        { name: "T.Megumi", role: "宣伝/広報", comment: "今年は楽しく準備ができたので満足です。", img: "P-images/26.webp" },
+        { name: "N.Haruki", role: "ダスティン役/外装の木", comment: "800らしさが詰まった劇", img: "P-images/27.webp" },
+        { name: "N.Kano", role: "", comment: "", img: "P-images/28.webp" },
+        { name: "H.Aiko", role: "", comment: "", img: "P-images/29.webp" },
+        { name: "H.Nari", role: "", comment: "", img: "P-images/30.webp" },
+        { name: "H.Yu", role: "音響チーフ/高校生役", comment: "限界突破します。", img: "P-images/31.webp" },
+        { name: "M.Tana", role: "", comment: "", img: "P-images/32.webp" },
+        { name: "M.Takeshi", role: "外装設計チーフ/インコ役", comment: "外装たってますか？(8/8のたけしより)", img: "P-images/33.webp" },
+        { name: "M.Maho", role: "広報", comment: "１、２年の時からかなり進化した！？広報物にもぜひ注目してください☺️800パワーが皆さんに届きますように‼︎", img: "P-images/34.webp" },
+        { name: "M.haruki", role: "設計/会計", comment: "<span class='bold'>命</span>を削ろう", img: "P-images/35.webp" },
+        { name: "Y.Mayuko", role: "広報", comment: "こだわりが詰まった広報物もぜひ全部チェックしてみてください！", img: "P-images/36.webp" },
+        { name: "Y.Sawa", role: "", comment: "", img: "P-images/37.webp" },
+        { name: "Y.Natsugu", role: "広報/会計/脚本", comment: "また後で考えます。", img: "P-images/38.webp" },
+        { name: "Y.Chiharu", role: "広報", comment: "800産の面白がたくさんの人に広がりますよう！", img: "P-images/39.webp" },
+        { name: "W.Taichi", role: "宣伝/内外装", comment: "がんばります。", img: "P-images/40.webp" },
+      ];
+      const container = document.getElementById("staff-list");
+
+      staffMembers.forEach(member => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="${member.img}" alt="${member.name}">
+              <h3>${member.name}</h3>
+            </div>
+            <div class="card-back">
+              <h4>${member.role}</h4>
+              <p id="comment">${member.comment}</p>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // クリックでフリップ
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('flipped');
+        });
+      });
+      </script>
     </main>
   </div>
 </body>

@@ -4,15 +4,17 @@ html{
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
 }
+
 body {
     background-color: black;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    max-width: 100vw;
-}
+    overflow-x: hidden;
+  }
 
 .anton-regular {
   font-family: "Anton", sans-serif;
@@ -20,12 +22,24 @@ body {
   font-style: normal;
 }
 
-*{
-  overflow-x: hidden;
+.m-plus-1p-regular {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.shippori-mincho-b1-bold {
+  font-family: "Shippori Mincho B1", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 #red{
   color:#C73422
+}
+
+.bold {
+  font-weight: bold;
 }
 
 /*開いた直後の目のアニメーション*/
@@ -235,7 +249,7 @@ body {
           }      
         
         #start-images{
-            width: 100vh;
+            width: 100vw;
             height: 100vh;
         }
         
@@ -492,6 +506,18 @@ body {
     animation-name: img-wrap-after;
     inset: 50% 0 0;
     transform: translateX(-100%);
+    }
+
+    #random-comment{
+      color: white;
+      border-bottom: none;
+      font-family: "Kaisei Opti", serif;
+      font-size: 24px;
+      display: block; /* デフォルトでOKだけど念のため */
+      text-align: center; /* 横方向の中央寄せ */
+      margin: 10px auto; /* 上下10px、左右自動で中央寄せ */
+      font-weight: bold;
+      font-size: 1.2rem;
     }
 
 /*#endregion*/
@@ -1049,9 +1075,11 @@ body {
 
 /*以上メインページ。以下キャストページ*/
 
-        .back-image{
+    @media screen and (min-width: 480px){
+
+       .back-image{
           position: absolute;
-          height: 100vh;
+          height: 100%;
           right: 0;
           z-index: -1;
           display: flex;
@@ -1059,7 +1087,7 @@ body {
         }
     
         h1{
-        font-size: 5vw;
+        font-size: 5vh;
         text-align: center;
         display: inline-block;
         color: black;
@@ -1144,7 +1172,7 @@ body {
 
         .white-back{
           width: 80vw;
-          height: 100vh;
+          height: 100%;
           background-color: white; 
           margin: 0 20% 0 5%;
           padding: 10% 0;
@@ -1173,13 +1201,13 @@ body {
 
         .Coverlay-content {
           width: 80%;
-          height: 100vh;
+          height: 100%;
           padding: 20px;
           opacity: 0;
           transform: translateY(50px);
           transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
           position: relative;
-          max-width: 600px;
+          max-width: 800px;
           background-color: #fff;
         }
 
@@ -1190,13 +1218,16 @@ body {
 
         #close-btn {
           position: absolute;
-          top: 20px;
-          right: 30px;
           background: transparent;
           border: none;
-          color: white;
-          font-size: 20px;
           cursor: pointer;
+          font-size: 30px;
+          color: #000;
+          position: absolute;
+          top: 15%;
+          right: 5%;
+          z-index: 1000;
+          font-family: "Kaisei Opti", serif;
         }
 
         #cast-photo1{
@@ -1261,23 +1292,470 @@ body {
           font-family: "Kaisei Opti", serif;
         }
 
-        #close-btn{
-          font-size: 30px;
-          color: #000;
-          position: absolute;
-          top: 15%;
-          right: 5%;
-          z-index: 1000;
-          font-family: "Kaisei Opti", serif;
-        }
-
         #back-word{
           font-size: 156px;
           color: #EEE;
           position: absolute;
           top: 10%;
           left: 0%;
-          z-index: AAA;
+          z-index: 100;
+          font-family: "Kaisei Opti", serif;
+        }         
+        
+        #cast-ex{
+          font-size: 15px;
+          color: #000;
+          position: absolute;
+          top: 78%;
+          left: 10%;
+          z-index: 1100;
           font-family: "Kaisei Opti", serif;
         }
-          
+
+        #cast-Perf{
+          font-size: 20px;
+          color: #000;
+          position: absolute;
+          top: 70%;
+          left: 10%;
+          z-index: 1000;
+          font-family: "Kaisei Opti", serif;
+        }
+
+    }
+
+    @media screen and (max-width: 480px){
+
+      .back-image{
+         position: absolute;
+         height: 150vh;
+         right: 0;
+         z-index: -1;
+         display: flex;
+         overflow: hidden;
+       }
+   
+       h1{
+       font-size: 5vw;
+       text-align: center;
+       display: inline-block;
+       color: black;
+       font-family: 'Anton', sans-serif;
+       padding: 5px 20px;
+       border-bottom: 1px solid black;
+       }
+
+       .Cast-button-container {
+         display: flex;
+         flex-wrap: wrap; /* ウィンドウが狭いと折り返す */
+         justify-content: center;
+         width: 80vw;
+         gap: 5%;
+         padding: 2% 0;
+       }
+
+       .cast-btn {
+         position: relative;
+         overflow: hidden;
+         cursor: pointer;
+         transition: transform 0.3s ease;
+         margin-bottom: 5vw;
+         border: none;         /* 枠線を消す */
+         box-shadow: none;     /* 影を消す */
+         outline: none;        /* フォーカス時の枠線も消す */
+         background: none;     /* 背景も透明にしたい場合 */
+
+       }
+   
+       .cast-btn:hover {
+         transform: scale(1.05);
+       }
+
+       .Cast1 {
+         display: block;
+         width:30vw;
+         height: auto;
+       }
+
+       .Cast2 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast3 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast4 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast5 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast6 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast7 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .Cast8 {
+         display: block;
+         width: 30vw;
+         height: auto;
+       }
+
+       .white-back{
+         width: 80vw;
+         height: 150vh;
+         background-color: white; 
+         margin: 0 20% 0 5%;
+         padding: 10% 0;
+       }
+
+       /* 画面全体を覆うカバー */
+       .Coverlay {
+         position: fixed;
+         top: 0;
+         left: -100%; /* 初期は画面外（左） */
+         width: 100vw;
+         height: 150vh;
+         background-color: rgba(0,0,0,0.9);
+         color: white;
+         display: flex;
+         justify-content: center;
+         align-items: flex-end; /* 下から出す */
+         transition: left 0.5s ease;
+         overflow: hidden;
+         z-index: 999;
+       }
+
+       .Coverlay.show {
+         left: 0; /* 画面左端から覆う */
+       }
+
+       .Coverlay-content {
+         width: 80%;
+         height: 150vh;
+         margin: 10vh;
+         padding: 20px;
+         opacity: 0;
+         transform: translateY(50px);
+         transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+         position: relative;
+         max-width: 800px;
+         background-color: #fff;
+       }
+
+       .Coverlay.show .Coverlay-content {
+         opacity: 1;
+         transform: translateY(0);
+       }
+
+       #close-btn {
+
+         position: absolute;
+         background: transparent;
+         border: none;
+         cursor: pointer;
+         font-size: 30px;
+         color: #000;
+         position: absolute;
+         top: 18%;
+         right: 0;
+         z-index: 1000;
+         font-family: "Kaisei Opti", serif;
+       }
+
+       #cast-photo1{
+         width: auto;
+         height: 45%;
+         display: flex;
+         position: absolute;
+         right: 18%;
+         top: 18%;
+         z-index: 1001;
+       }
+
+       #cast-photo2{
+         width: auto;
+         height: 24%;
+         display: flex;
+         position: absolute;
+         right: 8%;
+         top: 18%;
+         z-index: 1000;
+       }
+
+       #cast-photo3{
+         width: auto;
+         height: 24%;
+         display: flex;
+         position: absolute;
+         right: 8%;
+         top: 38%;
+         z-index: 1000;
+       }
+       #cast-photo4{
+        display: none;
+      }
+
+       #cast-info{
+         display: flex;
+         color: #000;
+         position: absolute;
+         top: 62%;
+         left: 10%;
+         z-index: 1100;
+         font-family: "Kaisei Opti", serif;
+         font-size: 40px;
+         border-bottom: 1px solid black;
+       }
+
+       #cast-rubi{
+         font-size: 15px;
+         color: #000;
+         position: absolute;
+         top: 68%;
+         left: 10%;
+         z-index: 1100;
+         font-family: "Kaisei Opti", serif;
+       }
+
+       #back-word{
+         font-size: 86px;
+         color: #EEE;
+         position: absolute;
+         top: 10%;
+         left: 0%;
+         z-index: 100;
+         font-family: "Kaisei Opti", serif;
+       }         
+       
+       #cast-ex{
+         font-size: 15px;
+         color: #000;
+         position: absolute;
+         top: 78%;
+         left: 10%;
+         z-index: 1100;
+         font-family: "Kaisei Opti", serif;
+       }
+
+       #cast-Perf{
+         font-size: 20px;
+         color: #000;
+         position: absolute;
+         top: 72%;
+         left: 10%;
+         z-index: 1100;
+         font-family: "Kaisei Opti", serif;
+       }
+
+   }
+
+/*ここからふぁいんとろだくしょん*/
+
+@media screen and (min-width: 480px){
+.GIFback {
+  position: fixed; /* 画面全体の背面に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("back.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -2; /* テキストより奥に置く */
+}
+
+.GIFback::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 暗さ調整 */
+  z-index: -1;
+}
+
+
+h2{
+  font-size: 5vh;
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  color: white;
+  font-family: 'Anton', sans-serif;
+  padding: 5px 20px;
+  top: 8vh;
+  border-bottom: 1px solid white;
+}
+
+
+#introduction{
+  padding-top: 25vh;
+  font-size: 25px;
+  color: #FFF;
+  font-family: "M PLUS 1p", sans-serif;
+  border-bottom: none;
+  line-height: 2.3;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+}
+
+#enp{
+  font-family: "Shippori Mincho B1", serif;
+  font-size:32px;
+}
+}
+
+@media screen and (max-width: 480px){
+  .GIFback {
+    position: fixed; /* 画面全体の背面に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    background-image: url("back.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -2; /* テキストより奥に置く */
+    overflow-x: hidden;
+  }
+  
+  .GIFback::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* 暗さ調整 */
+    z-index: -1;
+  }
+  
+  
+  h2{
+    font-size: 5vh;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-family: 'Anton', sans-serif;
+    padding: 5px 20px;
+    top: 8vh;
+    border-bottom: 1px solid white;
+  }
+  
+  
+  #introduction{
+    padding-top: 25vh;
+    font-size: 16px;
+    color: #FFF;
+    font-family: "M PLUS 1p", sans-serif;
+    border-bottom: none;
+    line-height: 2.3;
+    font-weight: 300;
+    width: 100%;
+    text-align: center;
+  }
+  
+  #enp{
+    font-family: "Shippori Mincho B1", serif;
+    font-size:20px;
+  }
+  }
+
+/*ここより下プロダクティオーネ*/
+.production-main {
+  width: 100%;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 横に並ぶ */
+  gap: 20px;
+  padding: 20px;
+  width: 100%; /* ←必ず指定 */
+  box-sizing: border-box; /* パディングも含めて幅計算 */
+}
+
+.card {
+  perspective: 1000px;
+  cursor: pointer;
+  aspect-ratio: 3 / 4; /* 縦横比を固定 */max-width: 40vw;
+
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front {
+  background: #fff;
+  font-family: 'Anton', sans-serif;
+}
+
+.card-front img {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.card-back {
+  background: #333;
+  color: white;
+  transform: rotateY(180deg);
+  padding: 0px;
+  text-align: center;
+  font-family: "Kaisei Opti", serif;
+}
+
+#comment {
+  font-family: "Kaisei Opti", serif;
+  font-size:10px;
+}
