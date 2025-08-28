@@ -159,9 +159,119 @@
     }
   });
     </script>
-    <main>
-      <p>Coming soon...</p>
+
+    <main class="H-main">
+
+      <img src="Cast/Back.webp" class="back-image">
+
+      <h1><span id="red">H</span>ighlight</h1>
+
+      <div class="map-container">
+        <img src="map.png" class="map" alt="地図">
+      
+        <!-- 吹き出し込み画像をボタン化 -->
+        <button class="bubble-btn" data-id="work1" style="top:28%; left:35%; width:10%;" onclick="openModal('work1')">
+          <img src="Highlight/げた.png" alt="作品1">
+        </button>
+      
+        <button class="bubble-btn" data-id="work2" style="top:58%; left:15%; width:16%;" onclick="openModal('work2')">
+          <img src="Highlight/たれ.png" alt="作品2">
+        </button>
+      
+        <button class="bubble-btn" data-id="work3" style="top:95%; left:75%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/てもち.png" alt="作品3">
+        </button>
+      
+        <button class="bubble-btn" data-id="work4" style="top:28%; left:5%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/とっかん.png" alt="作品4">
+        </button>
+
+        <button class="bubble-btn" data-id="work5" style="top:20%; left:22%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ぽ１.png" alt="作品5">
+        </button>
+
+        <button class="bubble-btn" data-id="work6" style="top:64%; left:29%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ぽ２.png" alt="作品6">
+        </button>
+
+        <button class="bubble-btn" data-id="work7" style="top:55%; left:43%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ぽめ.png" alt="作品7">
+        </button>
+
+        <button class="bubble-btn" data-id="work8" style="top:95%; left:60%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ぱん.png" alt="作品8">
+        </button>
+
+        <button class="bubble-btn" data-id="work9" style="top:48%; left:70%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ない.png" alt="作品9">
+        </button>
+
+        <button class="bubble-btn" data-id="work10" style="top:43%; left:60%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/がい.png" alt="作品10">
+        </button>
+
+        <button class="bubble-btn" data-id="work11" style="top:95%; left:45%; width:10%;" onclick="openModal('work3')">
+          <img src="Highlight/ろご.png" alt="作品11">
+        </button>
+      </div>
+
+      
+      <div id="H-overlay" class="H-overlay">
+        <div class="H-overlay-content">
+          <!-- 閉じるボタン -->
+          <span class="H-close-btn">&times;</span>
+      
+          <!-- 白背景部分 -->
+          <div class="H-detail-box">
+            <div id="H-detail-body"></div>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.querySelectorAll('.bubble-btn').forEach((btn, i) => {
+            setTimeout(() => {
+              btn.classList.add('visible');
+            }, i * 100); // 0.3秒ずつ遅らせる
+          });
+        }, 3300); // 全体的に3秒後から開始
+      });
+
+      const details = {
+        work1: `<h2 class="object">作品1</h2><img src="Highlight/げた.png" alt="detail"><p id="red">説明文1</p>`,
+        work2: `<h2 class="object">作品2</h2><img src="Highlight/たれ.png" alt="detail"><p id="red">説明文2</p>`,
+        work3: `<h2 class="object">作品3</h2><img src="Highlight/てもち.png" alt="detail"><p id="red">説明文3</p>`,
+        work4: `<h2 class="object">作品4</h2><img src="Highlight/とっかん.png" alt="detail"><p id="red">説明文2</p>`,
+        work5: `<h2 class="object">作品5</h2><img src="Highlight/ぽ１.png" alt="detail"><p id="red">説明文3</p>`,
+        work6: `<h2 class="object">作品6</h2><img src="Highlight/ぽ２.png" alt="detail"><p id="red">説明文2</p>`,
+        work7: `<h2 class="object">作品7</h2><img src="Highlight/ぽめ.png" alt="detail"><p id="red">説明文3</p>`
+      };
+      
+      const Hoverlay = document.getElementById("H-overlay");
+      const HdetailBody = document.getElementById("H-detail-body");
+      const HcloseBtn = document.querySelector(".H-close-btn");
+
+      // 各ボタンにイベント設定
+      document.querySelectorAll(".bubble-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          HdetailBody.innerHTML = details[id] || "<p>詳細未設定</p>";
+          Hoverlay.classList.add("active");
+        });
+      });
+
+      // 閉じるボタン
+      HcloseBtn.addEventListener("click", () => {
+        Hoverlay.classList.remove("active");
+      });
+      </script>
+
+<h3>なんか全然進まないよ〜〜〜！！！<br>劇開始までにはできるだけ完成させるから許して！<br>おやすみ！
+</h3>
     </main>
   </div>
 </body>
 </html>
+/Users/yoshida/Desktop/BLACKPEARL/Highlight/げた.png

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>個別デザイン吹き出しマップ</title>
+<style>
+  :root {
+    --bubble-w:120px;
+    --bubble-h:88px;
+    --bubble-border:1px solid #000;
+    --connector-width:1px;
+    --circle-outer:5px;
+    --accent:#000;
+  }
+
+  body { margin:0; font-family:sans-serif; }
+  .map-container { position:relative; width:100%; max-width:800px; margin:auto; }
+  .map { width:100%; display:block; }
+
+  .pin { display:none; }
+
+  /* バブル */
+  .generated-bubble {
+    position:absolute;
+    width: var(--bubble-w);
+    height: var(--bubble-h);
+    border: var(--bubble-border);
+    background:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-sizing:border-box; z-index:20;
+    transform: translate(var(--bubble-x,0px), var(--bubble-y,0px));
+  }
+  .generated-bubble img { max-width: calc(var(--bubble-w) - 28px); max-height: calc(var(--bubble-h) - 28px); }
+
+  /* 二重丸 */
+  .generated-circle {
+    position:absolute;
+    width: var(--circle-outer);
+    height: var(--circle-outer);
+    border: var(--bubble-border);
+    border-radius:50%;
+    background:#fff;
+    z-index:30;
+  }
+
+  /* SVG線 */
+  .connector-svg {
+    position:absolute; z-index:10; pointer-events:none; overflow:visible;
+  }
+  .connector-svg line { stroke:var(--accent); stroke-width:var(--connector-width); stroke-linecap:square; }
+  .connector-svg circle { stroke:var(--accent); stroke-width:var(--bubble-border); fill:#fff; }
+
+  /* モーダル */
+  .modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); }
+  .modal.hidden { display:none; }
+  .modal-content { background:#fff; padding:18px; border:2px solid var(--accent); max-width:700px; width:90%; box-sizing:border-box; }
+  .close { position:absolute; top:10px; right:14px; cursor:pointer; font-size:22px; }
+
+</style>
+</head>
+<body>
+
+<div class="map-container" id="map">
+  <img class="map" src="map.png" alt="建物地図">
+
+  <!-- ピンテンプレート -->
+  <div class="pin" 
+       style="top:30%; left:40%;" 
+       data-id="work1" 
+       data-thumb="https://picsum.photos/seed/work1/600/400"
+       data-line-length="100"
+       data-direction="up-right"
+       data-bubble-x="10"
+       data-bubble-y="-80"></div>
+
+  <div class="pin" 
+       style="top:60%; left:20%;" 
+       data-id="work2" 
+       data-thumb="https://picsum.photos/seed/work2/600/400"
+       data-line-length="120"
+       data-direction="up-left"
+       data-bubble-x="-130"
+       data-bubble-y="-70"></div>
+
+  <div class="pin" 
+       style="top:45%; left:70%;" 
+       data-id="work3" 
+       data-thumb="https://picsum.photos/seed/work3/600/400"
+       data-line-length="90"
+       data-direction="down-right"
+       data-bubble-x="20"
+       data-bubble-y="20"></div>
+</div>
+
+<div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✕</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const details = {
+    work1: `<h2>作品1</h2><img src='https://picsum.photos/seed/detail1/600/400' alt='detail'><p>説明文1</p>`,
+    work2: `<h2>作品2</h2><img src='https://picsum.photos/seed/detail2/600/400' alt='detail'><p>説明文2</p>`,
+    work3: `<h2>作品3</h2><img src='https://picsum.photos/seed/detail3/600/400' alt='detail'><p>説明文3</p>`
+  };
+
+  function openModal(id){
+    document.getElementById('modal-body').innerHTML = details[id] || '<p>詳細は未設定です。</p>';
+    document.getElementById('modal').classList.remove('hidden');
+  }
+
+  function closeModal(){
+    document.getElementById('modal').classList.add('hidden');
+  }
+
+  function draw(){
+    const map = document.getElementById('map');
+    const mapRect = map.getBoundingClientRect();
+    map.querySelectorAll('.generated-bubble, .generated-circle, .connector-svg').forEach(n=>n.remove());
+
+    Array.from(map.querySelectorAll('.pin')).forEach(pin=>{
+      const topPct = parseFloat(pin.style.top)/100;
+      const leftPct = parseFloat(pin.style.left)/100;
+      const id = pin.dataset.id;
+      const thumb = pin.dataset.thumb;
+      const lineLen = Number(pin.dataset.lineLength) || 100;
+      const dir = pin.dataset.direction || 'up-right';
+
+      const Cx = leftPct * map.clientWidth;
+      const Cy = topPct * map.clientHeight;
+
+      const off = lineLen;
+      let dx=0, dy=0;
+      if(dir==='up-right'){ dx=off; dy=-off; }
+      else if(dir==='up-left'){ dx=-off; dy=-off; }
+      else if(dir==='down-right'){ dx=off; dy=off; }
+      else if(dir==='down-left'){ dx=-off; dy=off; }
+
+      const attachX = Cx + dx;
+      const attachY = Cy + dy;
+
+      // バブル作成
+      const bubble = document.createElement('div');
+      bubble.className='generated-bubble';
+      bubble.style.setProperty('--bubble-x', pin.dataset.bubbleX+'px');
+      bubble.style.setProperty('--bubble-y', pin.dataset.bubbleY+'px');
+
+      const img = document.createElement('img');
+      img.src = thumb;
+      img.alt = id || 'thumb';
+      bubble.appendChild(img);
+
+      bubble.addEventListener('click', ()=>openModal(id));
+      map.appendChild(bubble);
+
+      // 二重丸
+      const circle = document.createElement('div');
+      circle.className='generated-circle';
+      circle.style.left = Cx - 2.5 + 'px';
+      circle.style.top  = Cy - 2.5 + 'px';
+      circle.addEventListener('click', ()=>openModal(id));
+      map.appendChild(circle);
+
+      // SVG線
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(svgNS,'svg');
+      svg.setAttribute('class','connector-svg');
+      const minX = Math.min(Cx, attachX)-8;
+      const minY = Math.min(Cy, attachY)-8;
+      svg.style.left = minX+'px';
+      svg.style.top  = minY+'px';
+      svg.setAttribute('width', Math.abs(attachX-Cx)+16);
+      svg.setAttribute('height', Math.abs(attachY-Cy)+16);
+
+      const line = document.createElementNS(svgNS,'line');
+      line.setAttribute('x1', Cx-minX);
+      line.setAttribute('y1', Cy-minY);
+      line.setAttribute('x2', attachX-minX);
+      line.setAttribute('y2', attachY-minY);
+      svg.appendChild(line);
+
+      const endc = document.createElementNS(svgNS,'circle');
+      endc.setAttribute('cx', attachX-minX);
+      endc.setAttribute('cy', attachY-minY);
+      endc.setAttribute('r',5);
+      svg.appendChild(endc);
+
+      map.appendChild(svg);
+    });
+  }
+
+  window.addEventListener('load', draw);
+  window.addEventListener('resize', draw);
+
+</script>
+</body>
+</html>

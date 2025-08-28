@@ -40,6 +40,7 @@ body {
 
 .bold {
   font-weight: bold;
+  font-size: 24px;
 }
 
 /*開いた直後の目のアニメーション*/
@@ -1725,7 +1726,7 @@ h2{
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -1735,8 +1736,10 @@ h2{
 }
 
 .card-front {
-  background: #fff;
+  background: #FFF;
+  color: #000;
   font-family: 'Anton', sans-serif;
+  font-size: 24px
 }
 
 .card-front img {
@@ -1758,4 +1761,110 @@ h2{
 #comment {
   font-family: "Kaisei Opti", serif;
   font-size:10px;
+}
+
+/*これでラストォォォォォ！！！！ハイライト*/
+
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+.map { width: 100%; display:block; }
+
+/* ボタン化する画像 */
+.bubble-btn {
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+.bubble-btn img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.H-main{
+  width: 80%;
+  height: 100%;
+  background-color: #FFF;
+  margin: 0 15% 0 5%;
+}
+
+.bubble-btn {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-in, transform 0.5s ease;
+}
+
+.bubble-btn.visible {
+  opacity: 1;
+  transform: translateY(0); 
+}
+
+/* 赤背景 */
+.H-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%; /* 初期状態：画面外 */
+  width: 100%;
+  height: 100%;
+  background: #C73422;
+  transition: left 0.6s ease;
+  z-index: 300;
+}
+
+/* 表示状態 */
+.H-overlay.active {
+  left: 0;
+}
+
+/* 赤背景の中身 */
+ .H-overlay-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 閉じるボタン */
+.H-close-btn {
+  position: absolute;
+  top: 12vh;
+  right: 10vw;
+  font-size: 32px;
+  color: gray;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* 白背景ボックス */
+.H-detail-box {
+  position: absolute;
+  bottom: -100%; /* 初期状態：画面外 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  height: 100%;
+  background: white;
+  padding: 0;
+  transition: bottom 0.6s ease, opacity 0.6s ease;
+  transition-delay: 0.3s;
+  opacity: 0;
+  overflow-y: auto;
+}
+
+.object{
+  color: #000;
+  font-family: "Kaisei Opti", serif;
+  border-bottom: #000 solid;
+}
+
+/* 白背景を表示 */
+.H-overlay.active .H-detail-box {
+  bottom: 0%; /* スライドインして配置 */
+  opacity: 1; /* フェードイン */
 }
