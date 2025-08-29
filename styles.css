@@ -525,12 +525,12 @@ body {
 
 /*メインページ用記述*/
 
+.main-page{
+  width: 100%;
+  height:100%;
+  position: relative;
+}
     @media screen and (min-width: 480px){
-        .main-page{
-            width: 100%;
-            height:100%;
-            position: relative;
-        }
 
         #poster{
             width:100%;
@@ -1081,6 +1081,7 @@ body {
        .back-image{
           position: absolute;
           height: 100%;
+          width: auto;
           right: 0;
           z-index: -1;
           display: flex;
@@ -1186,7 +1187,7 @@ body {
           left: -100%; /* 初期は画面外（左） */
           width: 100vw;
           height: 100vh;
-          background-color: rgba(0,0,0,0.9);
+          background-color: rgba(0,0,0,1);
           color: white;
           display: flex;
           justify-content: center;
@@ -1329,7 +1330,8 @@ body {
 
       .back-image{
          position: absolute;
-         height: 150vh;
+         height: 100%;
+         width: auto;
          right: 0;
          z-index: -1;
          display: flex;
@@ -1810,7 +1812,7 @@ h2{
   position: fixed;
   top: 0;
   left: -100%; /* 初期状態：画面外 */
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background: #C73422;
   transition: left 0.6s ease;
@@ -1833,7 +1835,7 @@ h2{
 .H-close-btn {
   position: absolute;
   top: 12vh;
-  right: 10vw;
+  right: 15vw;
   font-size: 32px;
   color: gray;
   cursor: pointer;
@@ -1843,7 +1845,7 @@ h2{
 /* 白背景ボックス */
 .H-detail-box {
   position: absolute;
-  bottom: -100%; /* 初期状態：画面外 */
+  top: 100%; /* 初期状態：画面外 */
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
@@ -1851,7 +1853,7 @@ h2{
   height: 100%;
   background: white;
   padding: 0;
-  transition: bottom 0.6s ease, opacity 0.6s ease;
+  transition: top 0.6s ease, opacity 0.6s ease;
   transition-delay: 0.3s;
   opacity: 0;
   overflow-y: auto;
@@ -1865,6 +1867,17 @@ h2{
 
 /* 白背景を表示 */
 .H-overlay.active .H-detail-box {
-  bottom: 0%; /* スライドインして配置 */
+  top: 0%; /* スライドインして配置 */
   opacity: 1; /* フェードイン */
+}
+
+.detail-image{
+  width: 80%;
+  padding: 30% 10% 10% 10%;
+}
+
+#detail{
+  color: black;
+  font-size: 20px;
+  font-family: "Kaisei Opti", serif;
 }
