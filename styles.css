@@ -1859,10 +1859,12 @@ h2{
   overflow-y: auto;
 }
 
+@media screen and (max-width: 480px){
 .object{
   color: #000;
   font-family: "Kaisei Opti", serif;
   border-bottom: #000 solid;
+  display: block;
 }
 
 /* 白背景を表示 */
@@ -1872,12 +1874,47 @@ h2{
 }
 
 .detail-image{
+  position: flex;
   width: 80%;
-  padding: 30% 10% 10% 10%;
+  padding: 30vh 10% 10% 10%;
+  display: block;
 }
+
 
 #detail{
   color: black;
-  font-size: 20px;
+  font-size: 15%;
   font-family: "Kaisei Opti", serif;
+  display: block;
 }
+}
+
+@media screen and (min-width: 480px){
+  .object{
+    color: #000;
+    font-family: "Kaisei Opti", serif;
+    border-bottom: #000 solid;
+    display: block;
+  }
+  
+  /* 白背景を表示 */
+  .H-overlay.active .H-detail-box {
+    top: 0%; /* スライドインして配置 */
+    opacity: 1; /* フェードイン */
+  }
+  
+  .detail-image{
+    position: flex;
+    width: 80%;
+    padding: 30% 10% 10% 10%;
+    display: block;
+  }
+  
+  
+  #detail{
+    color: black;
+    font-size: 20%;
+    font-family: "Kaisei Opti", serif;
+    display: block;
+  }
+  }
