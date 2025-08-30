@@ -1424,7 +1424,7 @@ body {
 
        .white-back{
          width: 80vw;
-         height: 150vh;
+         height: 100%;
          background-color: white; 
          margin: 0 20% 0 5%;
          padding: 10% 0;
@@ -1453,7 +1453,7 @@ body {
 
        .Coverlay-content {
          width: 80%;
-         height: 150vh;
+         height: 100%;
          margin: 10vh;
          padding: 20px;
          opacity: 0;
